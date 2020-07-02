@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="payment_juros_form_view" model="ir.ui.view">
+        <field name="name">payment_juros_form</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_invoice_form"/>
+        <field name="arch" type="xml">
+            <field name="communication" position="after">
+                <field name="juros" />
+                <field name="multa" />
+            </field>  
+        </field>
+    </record>    
+</odoo>

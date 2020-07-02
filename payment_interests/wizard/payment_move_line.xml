@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_payment_account_juros_form" model="ir.ui.view">
+        <field name="name">wizard.payment.account.juros</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="br_account_payment.view_br_account_payment_form"/>
+        <field name="arch" type="xml">
+            <field name="communication" position="after">
+                <newline />
+                <group>
+                    <field name="juros" />
+                    <field name="multa" />
+                    <field name="valor_original" invisible="1"/>
+                    <newline />
+                    <field name="incluir_juros" />
+                </group>
+            </field>
+        </field>
+    </record>    
+</odoo>
