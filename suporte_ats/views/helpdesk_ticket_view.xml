@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="ticket_view_chat_form" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.view.chat.form</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk_mgmt.ticket_view_form"/>
+        <field name="arch" type="xml">
+            <field name="channel_id" position="before">
+                <field name="id_chat"/>
+                <field name="id_chat_last"/>
+            </field>
+        </field>
+    </record>
+</odoo>
