@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_doc_seguro,access_doc_seguro,model_doc_seguro,account.group_account_manager,1,1,1,1
+access_doc_veiculo,access_doc_veiculo,model_doc_veiculo,account.group_account_manager,1,1,1,1
+access_doc_veiculo_reboque,access_doc_veiculo_reboque,model_doc_veiculo_reboque,account.group_account_manager,1,1,1,1
+access_doc_lacre,access_doc_lacre,model_doc_lacre,account.group_account_manager,1,1,1,1
+access_doc_referenciado,access_doc_referenciado,model_doc_referenciado,account.group_account_manager,1,1,1,1
+

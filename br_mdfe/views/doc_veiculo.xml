@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 KMEE INFORMATICA LTDA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="doc_veiculo_form_view">
+        <field name="name">doc.veiculo.form</field>
+        <field name="model">doc.veiculo</field>
+        <field name="arch" type="xml">
+            <form string="Cadastro Veiculo" duplicate="false">
+                <sheet>
+                    <h2>
+                        <field name="name" placeholder="PLACA"/>
+                    </h2>
+                    <group>
+                        <field name="veiculo_tipo"/>
+                        <field name="renavam"/>
+                        <field name="uf"/>
+                        <field name="rntrc"/>
+                        <field name="ciot"/>
+                        <field name="tipo_rodado"/>
+                    </group>
+                    <group>
+                        <field name="tipo_carroceria"/>
+                        <field name="tara_kg"/>
+                        <field name="capacidade_kg"/>
+                        <field name="capacidade_m3"/>
+                        <field name="proprio"/>
+                    </group>
+                    <newline />
+                    <group>
+                        <field name="proprio"/>
+                        <group attrs="{'invisible':[('proprio', '=', False)]}">
+                            <field name="tipo_proprietario"/>
+                            <field name="proprietario"/>
+                            <field name="proprietario_rntrc"/>
+                            <field name="proprietario_cnpj_cpf"/>
+                            <field name="proprietario_ie"/>
+                            <field name="proprietario_uf"/>
+                        </group>
+                    </group>
+                </sheet>          
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="doc_veiculo_tree_view">
+        <field name="name">doc.veiculo.tree</field>
+        <field name="model">doc.veiculo</field>
+        <field name="arch" type="xml">
+            <tree string="Cadastro Veiculo">
+                <field name="name" placeholder="PLACA"/>
+                <field name="veiculo_tipo"/>
+                <field name="renavam"/>
+                <field name="uf"/>
+                <field name="rntrc"/>
+                <field name="ciot"/>
+                <field name="tipo_rodado"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="doc_veiculo_reboque_form_view">
+        <field name="name">doc.veiculo.reboque.form</field>
+        <field name="model">doc.veiculo.reboque</field>
+        <field name="arch" type="xml">
+            <form string="Veiculo/Reboque" duplicate="false">
+                <field name="invoice_eletronic_id" invisible="1"/>
+                <field name="veiculo_id"/>
+                <field name="veiculo_tipo"/>
+                <field name="veiculo_renavam"/>
+                <field name="veiculo_uf"/>
+                <field name="veiculo_rntrc"/>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="doc_veiculo_reboque_tree_view">
+        <field name="name">doc.veiculo.reboque.tree</field>
+        <field name="model">doc.veiculo.reboque</field>
+        <field name="arch" type="xml">
+            <tree string="Veiculo/Reboque">
+                <field name="invoice_eletronic_id" invisible="1"/>
+                <field name="veiculo_id"/>
+                <field name="veiculo_tipo"/>
+                <field name="veiculo_renavam"/>
+                <field name="veiculo_uf"/>
+                <field name="veiculo_rntrc"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--<record model="ir.ui.view" id="sped_veiculo_search_view">-->
+        <!--<field name="name">sped.veiculo.search (in l10n_br_mdfe)</field>-->
+        <!--<field name="model">sped.veiculo</field>-->
+        <!--<field name="inherit_id" ref="TODO othermodule.search_view"/>-->
+        <!--<field name="arch" type="xml">-->
+            <!--&lt;!&ndash; TODO &ndash;&gt;-->
+        <!--</field>-->
+    <!--</record>-->
+
+    <!--<record model="ir.ui.view" id="sped_veiculo_tree_view">-->
+        <!--<field name="name">sped.veiculo.tree (in l10n_br_mdfe)</field>-->
+        <!--<field name="model">sped.veiculo</field>-->
+        <!--<field name="inherit_id" ref="TODO othermodule.tree_view"/>-->
+        <!--<field name="arch" type="xml">-->
+            <!--&lt;!&ndash; TODO &ndash;&gt;-->
+        <!--</field>-->
+    <!--</record>-->
+
+    <!--<record model="ir.actions.act_window" id="sped_veiculo_act_window">-->
+        <!--<field name="name">Sped Veiculo</field> &lt;!&ndash; TODO &ndash;&gt;-->
+        <!--<field name="res_model">sped.veiculo</field>-->
+        <!--<field name="view_mode">tree,form</field>-->
+        <!--<field name="domain">[]</field>-->
+        <!--<field name="context">{}</field>-->
+    <!--</record>-->
+
+    <!--<record model="ir.ui.menu" id="sped_veiculo_menu">-->
+        <!--<field name="name">Sped Veiculo</field>-->
+        <!--<field name="parent_id" ref="xmlid of parent menu"/> &lt;!&ndash; TODO &ndash;&gt;-->
+        <!--<field name="action" ref="sped_veiculo_act_window"/>-->
+        <!--<field name="sequence" eval="16"/> &lt;!&ndash; TODO &ndash;&gt;-->
+    <!--</record>-->
+
+</odoo>

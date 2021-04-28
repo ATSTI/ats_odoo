@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 KMEE INFORMATICA LTDA, Grupo Zenir
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="br_mdfe_doc_ref_form_view">
+        <field name="name">br_mdfe.doc.referenciado.form</field>
+        <field name="model">doc.referenciado</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="documento_id"/>
+                    <field name="invoice_eletronic_id" invisible="1"/>
+                    <field name="documento_chave"/>
+                    <field name="documento_modelo"/>
+                    <field name="documento_uf"/>
+                    <field name="documento_municipio"/>
+                    <field name="peso_bruto"/>
+                    <field name="valor"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="br_mdfe.doc_referenciado_tree_view">
+        <field name="name">br_mdfe.doc.referenciado.tree</field>
+        <field name="model">doc.referenciado</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="documento_id"/>
+                <field name="documento_chave"/>
+                <field name="documento_modelo"/>
+                <field name="documento_uf"/>
+                <field name="documento_municipio"/>
+                <field name="peso_bruto"/>
+                <field name="valor"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--<record model="ir.actions.act_window" id="doc_referenciado_act_window">-->
+        <!--<field name="name">L10n_br Mdfe Item</field> &lt;!&ndash; TODO &ndash;&gt;-->
+        <!--<field name="res_model">doc.referenciado</field>-->
+        <!--<field name="view_mode">tree,form</field>-->
+        <!--<field name="domain">[]</field>-->
+        <!--<field name="context">{}</field>-->
+    <!--</record>-->
+
+    <!--<record model="ir.ui.menu" id="doc_referenciado_menu">-->
+        <!--<field name="name">L10n_br Mdfe Item</field>-->
+        <!--<field name="parent_id" ref="xmlid of parent menu"/> &lt;!&ndash; TODO &ndash;&gt;-->
+        <!--<field name="action" ref="doc_referenciado_act_window"/>-->
+        <!--<field name="sequence" eval="16"/> &lt;!&ndash; TODO &ndash;&gt;-->
+    <!--</record>-->
+
+</odoo>

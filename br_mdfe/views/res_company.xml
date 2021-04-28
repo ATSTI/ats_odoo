@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_br_mdfe_form" model="ir.ui.view">
+        <field name="name">br_account_mdfe.res.company.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="br_account.view_br_account_company_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page name="mdfe" string="MDF-e">
+                    <group>
+                        <group name="mdfe" string="MDF-e">
+                            <field name="ambiente_mdfe" />
+                            <field name="tipo_emitente_mdfe" />
+                            <field name="tipo_transportador" />
+                        </group>
+                        <group name="cabecalho_danfe_mdfe" string="MDF-e">
+                            <field name="cabecalho_danfe" />
+                            <field name="serie_mdfe" />
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

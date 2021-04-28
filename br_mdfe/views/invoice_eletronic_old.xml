@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_br_mdfe_invoice_eletronic_form" model="ir.ui.view">
+        <field name="name">view.br_mdfe.invoice.eletronic.form</field>
+        <field name="model">invoice.eletronic</field>
+        <field name="arch" type="xml">
+            <form string="Documento Eletrônico" >
+                <header>
+                    <button name="action_send_eletronic_invoice" states="draft" string="Enviar Agora" type="object" class="oe_highlight"/>
+                    <button name="action_back_to_draft" states="edit,error" string="Repetir" type="object"/>
+                    <button name="action_edit_edoc" states="draft,error" string="Habilitar Edição" type="object" groups="br_account_einvoice.group_edit_edoc"/>
+                    <button name="action_cancel_document" confirm="Confirma o cancelamento do documento?" states="done" string="Cancelar" type="object"/>
+                    <button name="send_email_nfe" string="Reenviar Email" type="object" attrs="{'invisible': [('state', '!=', 'done')]}" />
+                    <button name="recriar_xml" type="object" class="oe_highlight" icon="fa-envelope"
+                        string="Recriar XML" attrs="{'invisible': ['|', ('state', '==', 'done'), ('model', 'not in', ('55', '65'))]}">
+                    </button>
+                    <button name="action_get_status" type="object" class="oe_highlight" icon="fa-envelope"
+                        string="Consultar Situação NFe" attrs="{'invisible': ['|', ('state', '!=', 'done'), ('model', 'not in', ('55', '65'))]}">
+                    </button>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done" />
+                </header>
+                <div name="alertas" class="alert alert-info" role="alert" style="margin-bottom:0px;">
+                    <field name="ambiente_mdfe" invisible="1" />
+                    <div class="alert alert-danger" role="alert" style="margin-bottom:0px;"
+                        attrs="{'invisible': ['|', ('ambiente_mdfe', '==', '1'), ('model', 'not in', ('58'))]}">
+                        A MDFe está em ambiente de homologação
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-1">
+                            <b>Situação: </b><field name="codigo_retorno" class="oe_inline" readonly="1"/><br />
+                            <b>Mensagem: </b><field name="mensagem_retorno"  class="oe_inline" readonly="1" />
+                            <b>Chave NFe:</b> <field name="chave_nfe" class="oe_inline" readonly="1"/><br />
+                            <b>Protocolo Autorização:</b><field name="protocolo_nfe" class="oe_inline" readonly="1"/>
+                        </div>
+                    </div>
+                </div>
+                <sheet string="Documento Eletronico">
+                    <notebook>
+                      <page name="principal" string="Emitente">
+                        <group>
+                            <group col="4" colspan="4">
+                                <field name="code" invisible="1" />
+                                <field name="name" readonly="1" />
+                                <field name="data_emissao"/>
+                                <newline />
+                                <field name="company_id" colspan="4" options="{'no_create': True, 'no_open': True}"/>
+                                <newline />
+                                <field name="numero" colspan="2"/>
+                                <field name="serie" colspan="2"/>
+                                <field name="ambiente_mdfe" colspan="2"/>
+                            </group>
+                        </group>
+                      </page>
+                      <page name="config" string="Configuracao">
+                            <group col="4" colspan="4">
+                                <field name="model" />
+                                <field name="tipo_emissao" />
+                                <field name="tipo_emitente_mdfe" />
+                                <field name="tipo_transportador" />
+                                <field name="modal" />
+                                <div class="oe_button_box" name="button_box">
+                                </div>
+                            </group>                      
+                      </page>
+                    </notebook>
+                    <notebook>
+                        <page name="documentos_relacionados" string="Documentos(NFe/CTe/MDFe)" >
+                            <field name="document_related_ids" >
+                                <tree>
+                                    <field name="documento_id" />
+                                    <field name="documento_modelo" />
+                                    <field name="documento_chave" />
+                                    <field name="documento_uf" />
+                                    <field name="documento_municipio" />
+                                    <field name="valor" />
+                                    <field name="peso_bruto" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="itens_mdfe" string="Percurso">
+                            <group col="6">
+                                <field name="carregamento_municipio_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" colspan="2"/>
+                                <field name="percurso_estado_ids"  widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" colspan="2"/>
+                                <field name="descarregamento_estado_ids"  colspan="2"/>
+                            </group>
+                            <group col="6">
+                                <field name="tipo_unid_transporte"/>
+                                <field name="tipo_unid_carga"/>
+                            </group>
+                            <group col="6">
+                                <field name="qtde_cte"/>
+                                <field name="qtde_nfe"/>
+                            </group>
+                            <group col='6'>                            
+                            <!--<field name="qtde_mdfe"/>-->
+                                <field name="valor_final"/>
+                                <field name="peso_bruto"/>
+                                <field name="unidade_carga"/>
+                            </group>
+                        </page>
+                        <page name="veiculos" string="Veiculo/Reboque" >
+                            <field name="veiculo_ids" >
+                                <tree>
+                                    <field name="veiculo_id" />
+                                    <field name="veiculo_renavam" />
+                                    <field name="veiculo_uf" />
+                                    <field name="veiculo_rntrc" />
+                                    <field name="veiculo_tipo" />
+                                </tree>
+                            </field>
+                        </page> 
+                        <page name="identificacao" string="Identificação">
+                            <group>
+                                <group>
+                                    <field name="company_id"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="serie"/>
+                                    <field name="serie_documento"/>
+                                    <field name="numero"/>
+                                    <field name="numero_controle"/>
+                                    <field name="recibo_nfe"  attrs="{'invisible': [('model', 'not in', ('58'))]}" />
+                                    <!--<field name="qrcode_hash" attrs="{'invisible': [('model', 'not in', ('65'))]}" />-->
+                                    <!--<field name="qrcode_url" attrs="{'invisible': [('model', 'not in', ('65'))]}" />-->
+                                    <field name="nfe_processada_name" invisible="1"/>
+                                    <field name="nfe_processada" filename="nfe_processada_name"/>
+                                    <field name="xml_to_send_name" invisible="1"/>
+                                    <field name="xml_to_send" filename="xml_to_send_name"/>
+                                </group>
+                                <group>
+                                    <field name="data_emissao"/>
+                                    <field name="data_autorizacao"/>
+                                    <field name="ambiente"/>
+                                    <field name="finalidade_emissao"/>
+                                    <field name="tipo_emissao" attrs="{'invisible': [('model', 'not in', ('58'))]}" />
+                                    <field name="ind_final" attrs="{'invisible': [('model', 'not in', ('58'))]}" />
+                                    <field name="ind_pres" attrs="{'invisible': [('model', 'not in', ('58'))]}" />
+                                    <field name="ind_dest" attrs="{'invisible': [('model', 'not in', ('58'))]}" />
+                                    <field name="ind_ie_dest" attrs="{'invisible': [('model', 'not in', ('58'))]}" />
+                                    <field name="iest" attrs="{'invisible': [('model', 'not in', ('58'))]}" />                                        
+                                </group>
+                            </group>
+                        </page>
+                        <page name="totais" string="Totais">
+                            <group>
+                                <group name="totais" string="Totais">
+                                    <field name="valor_bruto" />
+                                    <field name="valor_frete" />
+                                    <field name="valor_seguro" />
+                                    <field name="valor_desconto" />
+                                    <field name="valor_despesas" />
+                                    <field name="valor_final" />
+                                </group>
+                                <group name="impostos" string="Impostos">
+                                    <field name="valor_bc_icms" />
+                                    <field name="valor_icms" />
+                                    <field name="valor_icms_deson" />
+                                    <field name="valor_bc_icmsst" />
+                                    <field name="valor_icmsst" />
+                                    <field name="valor_ii" />
+                                    <field name="valor_ipi" />
+                                    <field name="valor_pis" />
+                                    <field name="valor_cofins" />
+                                    <field name="valor_estimado_tributos" />
+                                </group>
+                            </group>
+                            <group>
+                                <group name="servico" string="Totais de Serviço">
+                                    <field name="valor_servicos" />
+                                    <field name="valor_bc_issqn" />
+                                    <field name="valor_issqn" />
+                                    <field name="valor_pis_servicos" />
+                                    <field name="valor_cofins_servicos" />
+                                </group>
+                                <group name="retencoes" string="Retenções">
+                                    <field name="valor_retencao_issqn" />
+                                    <field name="valor_retencao_pis" />
+                                    <field name="valor_retencao_cofins" />
+                                    <field name="valor_bc_irrf" />
+                                    <field name="valor_retencao_irrf" />
+                                    <field name="valor_bc_csll" />
+                                    <field name="valor_retencao_csll" />
+                                    <field name="valor_bc_inss" />
+                                    <field name="valor_retencao_inss" />
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Observações">
+                            <group>
+                                <field name="informacoes_legais" />
+                                <field name="informacoes_complementares" />
+                            </group>
+                        </page>
+                        <page name="eventos" string="Eventos">
+                            <group>
+                                <field name="eletronic_event_ids" nolabel="1">
+                                    <tree name="Eventos">
+                                        <field name="state" invisible="1" />
+                                        <field name="code" />
+                                        <field name="name" />
+                                        <field name="create_date" />
+                                       <field name="create_uid" />
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_br_mdfe_invoice_eletronic_tree">
+        <field name="name">view.br.mdfe.invoice.eletronic.tree</field>
+        <field name="model">invoice.eletronic</field>
+        <field name="priority">9999</field>
+        <field name="arch" type="xml">
+            <tree string="MDF-e">
+                <field name="model"/>
+                <field name="state"/>
+                <field name="partner_id"/>
+                <field name="data_agendada"/>
+                <field name="data_entrada_saida" />
+                <field name="schedule_user_id" />
+            </tree>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="br_mdfe_invoice_eletronic_act_window">
+        <field name="name">Emissão de MDF-e</field>
+        <field name="res_model">invoice.eletronic</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('model','=', '58')]</field>
+        <field name="context">{'default_model': '58', 'default_name': 'MDFe-58', 'default_code': '0'}</field>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="view_br_mdfe_invoice_eletronic_form_acao">
+        <field eval="2" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_br_mdfe_invoice_eletronic_form"/>
+        <field name="act_window_id" ref="br_mdfe_invoice_eletronic_act_window"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="view_br_mdfe_invoice_eletronic_tree_acao">
+        <field eval="1" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_br_mdfe_invoice_eletronic_tree"/>
+        <field name="act_window_id" ref="br_mdfe_invoice_eletronic_act_window"/>
+    </record>
+
+
+    <record model="ir.ui.menu" id="br_mdfe_invoice_eletronic_menu">
+        <field name="name">MDF-e</field>
+        <field name="parent_id" ref="br_account_einvoice.menu_eletronic_doc_base"/>
+        <field name="action" ref="br_mdfe_invoice_eletronic_act_window"/>
+        <field name="sequence" eval="40"/>
+    </record>
+    
+</odoo>

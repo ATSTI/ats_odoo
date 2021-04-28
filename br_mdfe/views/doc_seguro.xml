@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 KMEE INFORMATICA LTDA, Grupo Zenir
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="doc_seguro_form_view">
+        <field name="name">doc.seguro.form</field>
+        <field name="model">doc.seguro</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="name"/>
+                    <field name="seguradora_cnpj"/>
+                    <field name="responsavel_seguro"/> 
+                    <field name="responsavel_cnpj_cpf"/>
+                    <field name="numero_apolice"/>
+                    <field name="numero_averbacao"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="doc_seguro_tree_view">
+        <field name="name">doc.seguro.tree</field>
+        <field name="model">doc.seguro</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="seguradora_cnpj"/>
+                <field name="responsavel_seguro"/> 
+                <field name="responsavel_cnpj_cpf"/>
+                <field name="numero_apolice"/>
+                <field name="numero_averbacao"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>
