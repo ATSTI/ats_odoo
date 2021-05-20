@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <field name="channel_id" position="before">
                 <field name="id_chat"/>
-                <field name="id_chat_last"/>
+                <field name="id_chat_channel"/>
             </field>
         </field>
     </record>

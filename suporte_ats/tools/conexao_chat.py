@@ -43,7 +43,7 @@ class Conexao(object):
         
     def busca_conversa(self, cliente, contato):
         ses = self.inicia_bd()
-        import pudb;pu.db
+        #import pudb;pu.db
         conversa = (
             ses.query(Suporte)
             .filter(Suporte.cliente == cliente, 

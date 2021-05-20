@@ -11,7 +11,7 @@
               "ATS,"
               "",
     'website': '',
-    'depends': ['helpdesk_mgmt', 'web_notify'],
+    'depends': ['mail', 'helpdesk_mgmt', 'web_notify'],
     'data': [
         'views/helpdesk_ticket_view.xml',
     ],
