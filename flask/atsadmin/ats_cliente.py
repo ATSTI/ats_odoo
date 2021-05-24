@@ -65,7 +65,9 @@ class AtsCliente:
         # Ve se alguem respondeu pra ATENDER
        # se tem algum arquivo de retorno
         path_file = '%sretorno_%s.txt' %(self.path_integra, linha['cliente'])
-        dados = {'msg': '', 'user': '', 'atendimento': '00000', 'canal': '000'}
+        dados = {'msg': '', 'user': '', 
+            'atendimento': '00000', 'canal': '000',
+            'assunto': '',}
         #import pudb;pu.db
         if os.path.exists(path_file):
             with open(path_file) as arquivo:
@@ -96,14 +98,15 @@ class AtsCliente:
             f.close
         dados = {'user': '' , 
                 'msg': '',
-                'atendimento': '0000', 'canal': '000'
+                'atendimento': '0000', 'canal': '000',
+                'assunto': '',
             }
         
         if (linha['id'] == '1'):
             # MENSAGEM PADRAO
             dados = {'user': 'ATS Suporte' , 
                 'msg': 'Aguarde um momento por favor...',
-                'atendimento': '0000', 'canal': '000'
+                'atendimento': '0000', 'canal': '000', 'assunto': '',
             }
             skype_obj = Skype('ats@atsti.com.br','a2t00s11')
             channel = skype_obj.chats.chat('19:66cb162407b442c49ef66303ed394e23@thread.skype')

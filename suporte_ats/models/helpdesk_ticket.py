@@ -50,6 +50,7 @@ class MailChannel(models.Model):
                 if ticket_ids:
                     retorno['atendimento'] = str(ticket_ids.id)
                     retorno['canal'] = str(self.id)
+                    retorno['assunto'] = ticket_ids.name
                     kwargs['subject'] = str(ticket_ids.id)
                     ticket_ids.write({'id_chat_channel': self.id})
                 with open(path_file, 'a') as arquivo:
@@ -65,10 +66,10 @@ class HelpdeskTicket(models.Model):
 
     path_integra = '/home/publico/tmp/integra/'
     
-    def send_to_channel(self, body, canal, img):
+    def send_to_channel(self, body, canal, img, img_type):
         ch_obj = self.env['mail.channel']
         ch_name =  'geral' #user.name+', '+self.env.user.name
-        import pudb;pu.db
+        #import pudb;pu.db
         if img:
             #base64.b64decode('b%s' %(img))
             #msg_bytes = img.encode('ascii')
@@ -76,16 +77,17 @@ class HelpdeskTicket(models.Model):
             #img = base64_bytes.decode('ascii')
             #img = base64.decodestring(json.dumps(img)['image'])
             #img = base64.decodestring(img.ByteData.encode())
+            img_name = '%s_img.%s' %(canal,img_type)
             attachment_id = self.env['ir.attachment'].create({
                    'name': 'imagem',
                    'type': 'binary',
                    'datas': img,
-                   'datas_fname': 'imagem' + '.jpg',
-                   'store_fname': 'imagem_%s.jpg' %(canal),
+                   'datas_fname': img_name,
+                   'store_fname': img_name,
                    'res_model': self._name,
                    'res_id': self.id,
             })
-        import pudb;pu.db
+        #import pudb;pu.db
         if canal:
             ch = ch_obj.sudo().search([('id', '=', canal)])
             for autor in ch.channel_partner_ids:
@@ -161,10 +163,13 @@ class HelpdeskTicket(models.Model):
                         # retorno do usuario
                         if 'canal' in dados:
                             canal = dados['canal']
-                            import pudb;pu.db
-                            #img = base64.decodestring(json.dumps(dados)['img'])
-                            img = base64.decodebytes(dados['img'])
-                            self.send_to_channel(dados['chat'], canal, img)
+                            #import pudb;pu.db
+                            #img = json.dumps(dados['img'])
+                            #img = base64.decode(img)
+                            img = dados['img']
+                            self.send_to_channel(
+                                dados['chat'], canal, img,
+                                dados['img_type'],)
                             ticket_ids.write({'id_chat_channel': canal})
                             excluir_arquivo = 'S'
             arquivo.close()
