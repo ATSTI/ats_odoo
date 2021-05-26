@@ -50,7 +50,7 @@ class AtsCliente:
 
     def envia_msg_odoo(self):
         #import pudb;pu.db
-        server = Client('192.168.6.100', '21_admin', 'carlos@atsti.com.br', 'a2t00s7')
+        server = Client(ip, bd, user, passwd)
         #server.user
         #print(server.user.name)
         help_obj = server['helpdesk.ticket']
@@ -108,8 +108,8 @@ class AtsCliente:
                 'msg': 'Aguarde um momento por favor...',
                 'atendimento': '0000', 'canal': '000', 'assunto': '',
             }
-            skype_obj = Skype('ats@atsti.com.br','a2t00s11')
-            channel = skype_obj.chats.chat('19:66cb162407b442c49ef66303ed394e23@thread.skype')
+            skype_obj = Skype(user_skype,passd_skype)
+            channel = skype_obj.chats.chat(id_grupo_skype)
             channel.sendMsg('%s - %s' %(linha['empresa'], linha['chat']))
         else:
             # Ve se alguem respondeu pra ATENDER
