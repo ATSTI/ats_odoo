@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="br_invoice_edit_wizard_view" model="ir.ui.view">
+        <field name="name">br.invoice.edit_view</field>
+        <field name="model">br.invoice.edit</field>
+        <field name="arch" type="xml">
+            <form string="Fazer o cancelamento de uma fatura já validade, sem alterar financeiro">
+                <p>
+                    <h3>O cancelamento por aqui, não vai alterar o financeiro, então os valores
+                        não PODEM ser alterados.
+                    </h3>
+                </p>
+                <p></p>
+                <p>
+                    <h3>Se não foi emitido boleto para esta fatura, faça o cancelamento pelo botão CANCELAR FATURA.
+                    </h3>
+                </p>
+                <group>
+                    <field name="company_id" readonly="1" />
+                    <field name="fiscal_position_id" invisible="1"/>
+                    <field name="product_serie_id" invisible="1"/>
+                    <field name="product_document_id" invisible="1"/>
+                    <field name="service_serie_id" invisible="1"/>
+                    <field name="service_document_id" invisible="1"/>
+                </group>
+                <footer>
+                    <button name="criar_documento" 
+                        type="object"
+                        class="btn btn-danger"
+                        icon="fa-mail-reply-all" 
+                        string="Cancelar Fatura sem alterar financeiro." />
+                    <button string="Desistir" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window
+        id="action_criar_documento_eletronico"
+        name="Cancelar Fatura sem alterar financeiro."
+        res_model="br.invoice.edit"
+        src_model="account.invoice"
+        view_mode="form"
+        target="new"
+        key2="client_action_multi"
+    />
+      
+</odoo>
