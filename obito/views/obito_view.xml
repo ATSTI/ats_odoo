@@ -1,0 +1,273 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record id="view_obito_search_form" model="ir.ui.view">
+            <field name="name">funeraria.obito.search.form</field>
+            <field name="model">obito</field>
+            <field name="arch" type="xml">
+               <search string="Obitos">
+                    <field name="name" string="Nome"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Nome" name="group_name" icon="terp-folder-violet" domain="[]"  context="{'group_by':'name'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- Liste des clients -->
+
+        <record id="view_obito_tree" model="ir.ui.view">
+            <field name="name">obito.tree</field>
+            <field name="model">obito</field>
+            <field name="arch" type="xml">
+                <tree string="Obitos" >
+                    <field name="falecido" />
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_obito_form" model="ir.ui.view">
+	    <field name="name">obito.form</field>
+	    <field name="model">obito</field>
+	    <field name="arch" type="xml">
+                <form string="Partners">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="falecido"/>
+                        </group>
+                    </group>
+                    <notebook colspan="4">
+                        <page name="dados_falecido" string="Dados Falecido">
+							<group>
+							   <field name="name" />
+							</group>													
+								<group>				
+									<group>			
+										<field name="tipo_obito" />
+			                			<field name="data_sistema"  />
+										<field name="data_nasc"  />									
+										<field name="ssp_falecido" />
+										<field name="dta_expedicao" />
+									</group>
+									<group>
+										<field name="cor" />
+										<field name="sexo" />									
+										<field name="estado_civil" />								
+										<field name="profissao" />
+										<field name="naturalidade" />
+										<field name="cpf_falecido" />
+										<field name="rg_falecido" />
+										<field name="e_eleitor" />	
+									</group>
+									<group>	
+										<field name="nacionalidade" />
+										<field name="local_nascimento" />
+										<field name="end_falecido" />
+										<field name="num_falecido" />
+										<field name="bairro" />
+										<field name="cidade" />
+										<field name="state_id" />
+                                        <field name="country_id" />
+										<field name="deixa_bens" />
+										<field name="testamento" />
+										<field name="inss" />
+										<field name="num_beneficio" />
+										<field name="csm" />
+										<field name="rm" />																	
+									</group>	
+                                </group>
+                                <group col ="8">
+										<field name="cidade_eleitoral" />
+										<field name="zona" />
+										<field name="secao" />
+										<field name="num" /> 
+ 										<field name="reservista" />
+										<field name="categoria" />
+										<field name="num_reservista" />
+										<field name="serie" />											                               
+                                </group>									
+								<group>							
+								    <field name="docs_apresentado" placeholder="..."/>
+                                </group>	
+                        </page>
+                        <page name="dados_falecimento" string="Dados Falecimento">
+							<group>
+							    <field name="cemiterio" />
+	                            <field name="local_fal" />							
+							</group>
+                            <group col="8">
+							    <field name="data_sep"  />
+		                        <field name="hora_sep"  widget="float_time" /> 
+								<field name="data_fal"  />
+		                        <field name="hora_fal"  widget="float_time" /> 	                                
+                            </group>
+                            <group col="4">
+                                 <field name="crm1"  />                                
+                                 <field name="crm2"  />
+                            </group>
+                            <group> 
+	 	                        <field name="conjuge1" />
+ 	                        </group> 
+ 	                        <group>       
+ 	                            <group col="4">
+		                            <field name="conj_nupcias1"  />
+		                            <field name="conj_data1"  />
+	                            </group>  
+	                         </group>       
+                             <group col="6">
+	             		 	    <field name="conj_livro1"  />
+	                            <field name="conj_folha1"  />
+	                            <field name="conj_num1"  />
+	                         </group>
+	                                    
+                                 <group>									
+				                     <field name="conjuge2" />
+								 </group>
+
+ 	                         <group>       
+ 	                             <group col ="4">
+		                             <field name="conj_nupcias2"  />
+		                             <field name="conj_data2"  />
+	                             </group>  
+	                         </group>                             
+                             <group col="6">
+	             		 	    <field name="conj_livro2"  />
+	                            <field name="conj_folha2"  />
+	                            <field name="conj_num2"  />
+	                         </group> 
+                                                       
+                             <group>
+                                 <field name="causa_morte" />
+	                             <field name="obs" />
+                             </group>                         
+                           
+                        </page> 
+                        <page name="dados_pais" string="Dados dos Pais">
+
+								<group col="4">
+								    <field name="nome_pai" />							    
+								    <field name="estcivil_pai" />
+
+								</group>
+								<group col="6">
+								    <field name="d_nasc_pai" />									
+									<field name="natural_pai" />
+								    <field name="profissiao_pai" />	
+								</group> 
+								<group col="4">
+									<field name="nome_mae" />
+									<field name="estcivil_mae" />
+								</group>								   
+								<group col="6">
+								    <field name="d_nasc_mae" />
+									<field name="natural_mae" />
+									<field name="profissiao_mae" />
+								</group> 
+									<group col="4">
+						            <field name="endereco_pais" width="70%"/>
+									<field name="numero_pais" width="20%" />
+									</group>								
+								
+								
+						    <group>								
+								<group>  
+
+                                    <group col="8">
+									<field name="bairro_pais" />
+									<field name="cidade_pais"/>
+									<field name="uf_pais"/>
+									<field name="cep_pais" />
+									</group>									
+                                </group>
+							
+							 </group>
+							    
+								<group col="4">	
+									<field name="nupcias_pais" />
+									<field name="data_casamento_pai" /> 							    
+							    </group>							    
+								<group col="6">	
+									<field name="livro_pai" />
+									<field name="folha_pai" />
+									<field name="num_pai" />								    
+							    </group>	
+
+								<group col="4">
+									<field name="avos_paterno1" />
+									<field name="avos_paterno2" />                          
+                                </group>
+								<group col="4">
+									<field name="avos_materno1" />
+									<field name="avos_materno2" />                            
+                                </group>                                
+                        </page>                            
+                        <page name="filhos" string="Filhos">
+							<group>
+						        <field name="nome_filho" />
+						        <field name="idade_filho" /> 
+						    </group>	                      
+                        </page>                             
+                        <page name="declarante" string="Declarante">
+							<group>	
+								<group>
+								    <group>
+								    <field name="declarante" />
+								    <field name="decla_nacionalidade" />
+								    <field name="cpf_declarante" />
+									<field name="rg_cpf" /> 
+									<field name="ssp_declarante" /> 
+									<field name="grau_parentesco" /> 
+									<field name="fone_decl" /> 
+									</group>	
+									<group>	
+									<field name="profissiao_decl" />
+									<field name="decla_estcivil" />
+									<field name="endereco_decl" /> 
+									<field name="velorio" /> 
+									<field name="registro_cartorio" /> 
+									<field name="endereco_cartorio" /> 				    	
+	                                <field name="cidade_cartorio" />
+	                                </group>						    
+								</group>
+							</group>				
+                        </page>                                             
+                        <page name="administrativo" string="Administrativo">
+                        </page>                                                                                                                                       
+                    </notebook>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+
+         <record id="action_obito_form" model="ir.actions.act_window">
+            <field name="name">Obitos</field>
+            <field name="res_model">obito</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_obito_tree_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_obito_tree"/>
+            <field name="act_window_id" ref="action_obito_form"/>
+        </record>
+        <record id="action_obito_form_view" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_obito_form"/>
+            <field name="act_window_id" ref="action_obito_form"/>
+        </record>
+
+
+        <menuitem id="menu_obito_form" parent="account.menu_finance_receivables" action="action_obito_form" sequence="5"/>
+
+    <!-- Menu Item Funeraria -->
+    <menuitem id="menu_funeraria" name="Funeraria" web_icon="obito,static/description/ems.png" sequence="1"/>
+    <menuitem id="menu_funeraria_cadastros" name="Cadastros" parent="menu_funeraria" sequence="21" groups="obito.group_funeraria_gerente,obito.group_funeraria_assistente"/>    
+    <menuitem id="menu_funeraria_obito" name="Obitos" parent="menu_funeraria" action="action_obito_form" sequence="21" groups="obito.group_funeraria_gerente,obito.group_funeraria_assistente"/>
+
+    </data>
+</odoo>

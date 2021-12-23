@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record id="view_obito_grupo_search_form" model="ir.ui.view">
+            <field name="name">funeraria.obito.grupo.search.form</field>
+            <field name="model">obito.grupo</field>
+            <field name="arch" type="xml">
+               <search string="Obitos">
+                    <field name="name" string="Nome"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Nome" name="group_name" icon="terp-folder-violet" domain="[]"  context="{'group_by':'name'}"/>
+                    </group>
+                    <field name="name" />
+                    <field name="codigo" />
+                    <field name="inscricao" />
+                    <field name="faixa" />
+                    <field name="insc_ini" />
+                    <field name="insc_fim" />                
+                </search>
+            </field>
+        </record>
+        <!-- Liste des clients -->
+
+        <record id="view_obito_grupo_tree" model="ir.ui.view">
+            <field name="name">obito.grupo.tree</field>
+            <field name="model">obito.grupo</field>
+            <field name="arch" type="xml">
+                <tree string="Obitos" >
+                    <field name="name" />
+                    <field name="codigo"/>
+                    <field name="inscricao" />
+                    <field name="faixa" />
+                    <field name="insc_ini" />
+                    <field name="insc_fim" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_obito_grupo_form" model="ir.ui.view">
+	        <field name="name">obito.grupo.form</field>
+	        <field name="model">obito.grupo</field>
+	        <field name="arch" type="xml">
+                <form string="Obitos" >
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="faixa" />
+                            <field name="insc_ini" />
+                            <field name="insc_fim" />
+                        </group>
+                        <group>
+                            <field name="codigo"/>
+                            <field name="inscricao" />
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+    
+           <record id="action_obito_grupo_form" model="ir.actions.act_window">
+            <field name="name">Cadastro Grupos</field>
+            <field name="res_model">obito.grupo</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_obito_grupo_tree_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_obito_grupo_tree"/>
+            <field name="act_window_id" ref="action_obito_grupo_form"/>
+        </record>
+        <record id="action_obito_grupo_form_view" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_obito_grupo_form"/>
+            <field name="act_window_id" ref="action_obito_grupo_form"/>
+        </record>
+    <menuitem id="menu_funeraria_obito_grupo" name="Obitos Grupo" parent="menu_funeraria" action="action_obito_grupo_form" sequence="21" groups="obito.group_funeraria_gerente,obito.group_funeraria_assistente"/>
+    </data>
+</odoo>

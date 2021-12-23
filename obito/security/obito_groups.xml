@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="1">
+        <record id="module_category_funeraria" model="ir.module.category">
+            <field name="name">Administracao Funeraria</field>
+            <field name="sequence">22</field>
+        </record>
+
+        <record id="group_funeraria_gerente" model="res.groups">
+            <field name="name">Gerente Funeraria</field>
+            <field name="category_id" ref="module_category_funeraria"/>
+            <field name="users" eval="[(4, ref('base.user_root')),(4, ref('base.user_admin'))]"/>
+        </record>
+
+        <record id="group_funeraria_assistente" model="res.groups">
+            <field name="name">Assistente Funeraria</field>
+            <field name="category_id" ref="module_category_funeraria"/>
+        </record>
+
+        <record id="group_funeraria_usuario" model="res.groups">
+            <field name="name">Usuario Funeraria</field>
+            <field name="category_id" ref="module_category_funeraria"/>
+        </record>
+  </data>
+</odoo>

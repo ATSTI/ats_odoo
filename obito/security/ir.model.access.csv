@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_funeraria_gerente,obito,model_obito,group_funeraria_gerente,1,1,1,1
+access_funeraria_assistente,obito,model_obito,group_funeraria_assistente,1,1,1,0
+access_funeraria_usuarioo,obito,model_obito,group_funeraria_usuario,1,0,0,0

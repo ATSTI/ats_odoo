@@ -1,0 +1,38 @@
+<!--
+
+    Copyright © 2021; Brazil; ATSTi; 
+
+-->
+<odoo noupdate="False">
+
+        <record id="ACESSO_GERENTE_FUNERARIA_GRUPO" model="ir.model.access">
+        <field name="name">FUNERARIA GERENTE</field>
+        <field name="model_id" ref="obito.model_obito_grupo" />
+        <field name="group_id" ref="obito.group_funeraria_gerente" />
+        <field name="perm_create" eval="True" />
+        <field name="perm_read" eval="True" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_unlink" eval="True" />
+    </record>
+
+        <record id="ACESSO_ASSISTENTE_FUNERARIA_GRUPO" model="ir.model.access">
+        <field name="name">FUNERARIA ASSISTENTE</field>
+        <field name="model_id" ref="obito.model_obito_grupo" />
+        <field name="group_id" ref="obito.group_funeraria_assistente" />
+        <field name="perm_create" eval="False" />
+        <field name="perm_read" eval="True" />
+        <field name="perm_write" eval="False" />
+        <field name="perm_unlink" eval="False" />
+    </record>
+
+       <record id="ACESSO_USUARIO_FUNERARIA_GRUPO" model="ir.model.access">
+        <field name="name">FUNERARIA USUARIO</field>
+        <field name="model_id" ref="obito.model_obito_grupo" />
+        <field name="group_id" ref="obito.group_funeraria_usuario" />
+        <field name="perm_create" eval="False" />
+        <field name="perm_read" eval="True" />
+        <field name="perm_write" eval="False" />
+        <field name="perm_unlink" eval="False" />
+    </record>
+
+</odoo>
